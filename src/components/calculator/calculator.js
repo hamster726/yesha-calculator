@@ -82,7 +82,7 @@ const Calculator = () => {
     }
 
     const calculate = () => {
-        setEquation(eval(equation));
+        setEquation(eval(equation) + '');
     }
 
 
