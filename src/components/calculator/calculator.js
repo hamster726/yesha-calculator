@@ -52,11 +52,12 @@ const Calculator = () => {
                 }
             }
         }
-        const sumBeforePercent = eval(value.join('').slice(0, lasNumIndex));
+        const beforePercent = value.join('').slice(0, lasNumIndex)
+        const sumBeforePercent = eval(beforePercent);
 
         percent = percent.join('');
         console.log(sumBeforePercent);
-        const result = '' + sumBeforePercent + value[lasNumIndex] + sumBeforePercent + '/100*' + percent;
+        const result = '' + beforePercent + value[lasNumIndex] + sumBeforePercent + '/100*' + percent;
         setEquation(result);
     }
 
