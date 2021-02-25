@@ -20,6 +20,29 @@ const Calculator = () => {
         setEquation(equation.concat(value));
     }
 
+    const addMathOperator = (value) => {
+        let result;
+
+        switch (equation.charAt(equation.length-1)) {
+            case ('/'):
+            case ('*'):
+            case ('+'):
+            case ('-'):
+            case ('%'):
+            case ('('):
+            case (')'):
+            case ('.'):
+                result = equation.slice(0,equation.length-1);
+                result = result.concat(value);
+                setEquation(result);
+                break;
+            default: {
+                setEquation(equation.concat(value));
+            }
+
+        }
+    }
+
     const removeLastValue = () => {
         setEquation(equation.slice(0, equation.length - 1));
     }
@@ -42,8 +65,6 @@ const Calculator = () => {
                 case ('+'):
                 case ('-'):
                 case ('%'):
-                case ('('):
-                case (')'):
                     lasNumIndex = i;
                     i = -1;
                     break;
@@ -56,8 +77,7 @@ const Calculator = () => {
         const sumBeforePercent = eval(beforePercent);
 
         percent = percent.join('');
-        console.log(sumBeforePercent);
-        const result = '' + beforePercent + value[lasNumIndex] + sumBeforePercent + '/100*' + percent;
+        const result = '' + beforePercent + value[lasNumIndex] + eval(sumBeforePercent + '/100*' + percent).toFixed(3).replace(/\.?0*$/g,'');
         setEquation(result);
     }
 
@@ -83,7 +103,7 @@ const Calculator = () => {
     }
 
     const calculate = () => {
-        setEquation(eval(equation) + '');
+        setEquation(eval(equation).toFixed(2).replace(/\.?0*$/g,''));
     }
 
 
@@ -98,28 +118,27 @@ const Calculator = () => {
                 <div className="calculator__button" onClick={() => removeLastValue()}><FontAwesomeIcon
                     icon={faBackspace}/></div>
                 <div className="calculator__button" onClick={() => {
-                    addValue('%');
                     calcPercent(equation);
                 }}><FontAwesomeIcon icon={faPercent}/>
                 </div>
-                <div className="calculator__button" onClick={() => addValue('/')}><FontAwesomeIcon icon={faDivide}/>
+                <div className="calculator__button" onClick={() => addMathOperator('/')}><FontAwesomeIcon icon={faDivide}/>
                 </div>
                 <div className="calculator__button" onClick={() => addValue(7)}>7</div>
                 <div className="calculator__button" onClick={() => addValue(8)}>8</div>
                 <div className="calculator__button" onClick={() => addValue(9)}>9</div>
-                <div className="calculator__button" onClick={() => addValue('*')}><FontAwesomeIcon icon={faTimes}/>
+                <div className="calculator__button" onClick={() => addMathOperator('*')}><FontAwesomeIcon icon={faTimes}/>
                 </div>
                 <div className="calculator__button" onClick={() => addValue(4)}>4</div>
                 <div className="calculator__button" onClick={() => addValue(5)}>5</div>
                 <div className="calculator__button" onClick={() => addValue(6)}>6</div>
-                <div className="calculator__button" onClick={() => addValue('-')}><FontAwesomeIcon icon={faMinus}/>
+                <div className="calculator__button" onClick={() => addMathOperator('-')}><FontAwesomeIcon icon={faMinus}/>
                 </div>
                 <div className="calculator__button" onClick={() => addValue(1)}>1</div>
                 <div className="calculator__button" onClick={() => addValue(2)}>2</div>
                 <div className="calculator__button" onClick={() => addValue(3)}>3</div>
-                <div className="calculator__button" onClick={() => addValue('+')}><FontAwesomeIcon icon={faPlus}/></div>
-                <div className="calculator__button" onClick={() => addValue('.')}>.</div>
-                <div className="calculator__button" onClick={() => addValue('0')}>0</div>
+                <div className="calculator__button" onClick={() => addMathOperator('+')}><FontAwesomeIcon icon={faPlus}/></div>
+                <div className="calculator__button" onClick={() => addMathOperator('.')}>.</div>
+                <div className="calculator__button" onClick={() => addMathOperator('0')}>0</div>
                 <div className="calculator__button" onClick={() => addBracket()}>(&nbsp;)</div>
                 <div className="calculator__button" onClick={() => calculate()}><FontAwesomeIcon icon={faEquals}/></div>
             </div>
