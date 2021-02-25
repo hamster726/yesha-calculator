@@ -29,9 +29,6 @@ const Calculator = () => {
             case ('+'):
             case ('-'):
             case ('%'):
-            case ('('):
-            case (')'):
-            case ('.'):
                 result = equation.slice(0,equation.length-1);
                 result = result.concat(value);
                 setEquation(result);
@@ -65,6 +62,8 @@ const Calculator = () => {
                 case ('+'):
                 case ('-'):
                 case ('%'):
+                case ('('):
+                case (')'):
                     lasNumIndex = i;
                     i = -1;
                     break;
