@@ -51,6 +51,7 @@ const Calculator = () => {
     }
 
     const calcPercent = () => {
+
         let percent = [];
         let value = equation.split('');
 
@@ -75,7 +76,7 @@ const Calculator = () => {
             }
         }
         const beforePercent = value.join('').slice(0, lasNumIndex)
-        const sumBeforePercent = calculate(equation);
+        const sumBeforePercent = eval(beforePercent);
 
         percent = percent.join('');
         const result = '' + beforePercent + value[lasNumIndex] + eval(sumBeforePercent + '/100*' + percent).toFixed(3).replace(/\.?0*$/g, '');
