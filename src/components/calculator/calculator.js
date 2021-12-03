@@ -192,7 +192,7 @@ const Calculator = () => {
   return (
     <div className="calculator">
       <form className="calculator__display" onSubmit={e => e.preventDefault()}>
-        <input ref={calculatorRef} type="text" className="calculator__main-calc" placeholder="0" value={equation} onChange={undefined}/>
+        <input ref={calculatorRef} type="text" className="calculator__main-calc" placeholder="0" value={equation}/>
         {/*<div className="calculator__preliminary-calc">{preCalcValue}</div>*/}
       </form>
       <div className="calculator__buttons">
