@@ -8,10 +8,10 @@
   width: 400px;
   height: 500px;
   background-color: $dark-color;
-  box-shadow: 0 30px 60px 0 rgba(90, 116, 148, 40%);
   border-radius: 10px;
   font-family: "Proxima Soft";
   animation: surfacing 0.7s;
+  box-shadow: 0 30px 60px 0 rgba(90, 116, 148, 40%);
 
   &__display {
     width: 380px;
